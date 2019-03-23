@@ -1,3 +1,0 @@
-El nombre del estudiante es Andres
-con cédula 12345
-se ha matriculado en el curso llamado 2
