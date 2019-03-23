@@ -14,6 +14,6 @@ let promedio = (nota_uno, nota_dos, nota_tres, callback)=>{
  	}, 2000);
  }
 
- promedio(5,4,5,function(resultado){
-	 console.log("El promedio es " + resultado);
+ promedio(5,4,5,function(resultado_1){
+	 console.log("El promedio es " + resultado_1);
  })
