@@ -22,8 +22,11 @@ let cursos = [
 function ofertaCursos(){
     let lista_cursos = "<h1>OFERTA DE CURSOS </h1> <BR> ";
     for(var counter=0; counter<cursos.length; counter++) {
-        lista_cursos = lista_cursos + "ID: " + cursos[counter].id + "<BR> NOMBRE: " + cursos[counter].nombre + "<BR> DURACION: " + 
-            cursos[counter].duracion + "<BR> VALOR: " + cursos[counter].valor +"<BR> **************** <BR>";
+        lista_cursos = lista_cursos + "ID: " + 
+         cursos[counter].id + "<BR> NOMBRE: " +
+         cursos[counter].nombre + "<BR> DURACION: " + 
+         cursos[counter].duracion + "<BR> VALOR: " + 
+         cursos[counter].valor +"<BR> **************** <BR>";
     }
     return lista_cursos;
 };
