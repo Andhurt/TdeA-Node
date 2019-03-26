@@ -1,0 +1,25 @@
+{{>header}}
+    <p>
+        Bienvenido a la página de inicio
+    </p>
+
+    <form action="/calculos" method="post">
+        <input type="text" name="nombre">
+        <input type="number" name="nota1">
+        <input type="number" name="nota2">
+        <input type="number" name="nota3">
+        <button>Calcular</button>
+    </form>
+
+    <form action="/crearcurso" method="post">
+        <input type="number" name="id">
+        <input type="text" name="nombre">
+        <input type="text" name="modalidad">
+        <input type="number" name="valor">
+        <input type="text" name="descripcion">
+        <input type="number" name="intensidad">
+        <button>Crear Curso</button>
+    </form>
+
+
+{{>footer}}
