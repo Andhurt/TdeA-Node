@@ -26,8 +26,8 @@ hbs.registerHelper('crearCurso',
 
 hbs.registerHelper('listarCursos', () =>{
     listarCursos();
-    let texto = "<table>\
-    <thead'>\
+    let texto = "<table class='table table-striped'>\
+    <thead class='thead-dark'>\
         <th>id</th>\
         <th>Nombre</th>\
         <th>Descripción</th>\
