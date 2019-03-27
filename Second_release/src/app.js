@@ -50,6 +50,10 @@ app.post('/crearcursox', (req, res) =>{
     })
 });
 
+app.get('/vercursos', (req, res) =>{
+    res.render('cursos_est', {})
+});
+
 app.get('*', (req, res) => {
     res.render('error',  {
         estudiante: 'error'

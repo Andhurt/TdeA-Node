@@ -1,1 +1,1 @@
-[{"id":1,"nombre":"1","modalidad":"Presencial","valor":1,"descripcion":"1","intensidad":0,"estado":"Disponible"}]
+[{"id":1,"nombre":"matematicas","modalidad":"Presencial","valor":1,"descripcion":"matematicas","intensidad":0,"estado":"Disponible"},{"id":2,"nombre":"ingles","modalidad":"Presencial","valor":2,"descripcion":"2","intensidad":2,"estado":"Disponible"},{"id":3,"nombre":"español","modalidad":"Presencial","valor":3,"descripcion":"3","intensidad":30,"estado":"Disponible"}]
