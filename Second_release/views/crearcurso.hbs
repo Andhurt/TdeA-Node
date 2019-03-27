@@ -1,10 +1,76 @@
 {{>header}}
-    <p>
-        Formulario para ingresar un nuevo curso
-    </p>
-    <p>
-        {{crearCurso id nombre modalidad valor descripcion intensidad}}
-    </p>
-    <br>
-    {{{listarCursos}}}
+{{!-- <div class="container-fluid">
+    <form action="/crearcursox" method="post">
+        <input type="number" name="id">
+        <input type="text" name="nombre">
+        <input type="text" name="modalidad">
+        <input type="number" name="valor">
+        <input type="text" name="descripcion">
+        <input type="number" name="intensidad">
+        <button>Crear Curso</button>
+    </form>
+</div>
+<br>  --}}
+
+<div class="container-fluid">
+    <div class="container-fluid" style=" border:1px solid green;">
+        <form action="/crearcursox" method="post">
+
+            <div class="form-row mt-3">
+                <div class="form-group col-md-6">
+                    <label for="inputId">Id</label>
+                    <input type="number" class="form-control" name="id" id="inputId" placeholder="Id del curso"
+                        required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputName">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="inputName" placeholder="Nombre del curso"
+                        required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="selectModalidad">Modalidad</label>
+                    <select class="form-control" id="selectModalidad" name="modalidad">
+                        <option>Presencial</option>
+                        <option>Semi-presencial</option>
+                        <option>Virtual</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputValor">Valor</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">USD</span>
+                        </div>
+                        <input type="number" class="form-control" aria-label="Monto (en dólares)" 
+                            id="inputValor" placeholder="Valor del curso en dólares"
+                            name="valor" pattern = "[0-9]{1,5}" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="textDescripcion">Descripción</label>
+                    <textarea class="form-control" id="textDescripcion" name="descripcion"
+                        rows="3" required></textarea >
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputIntensidad">Intensidad Horaria</label>
+                    <input type="number" class="form-control" name="intensidad" 
+                    id="inputIntensidad" value="0">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block">Guardar</button>
+        </form>
+        <br>
+    </div>
+</div>
+
 {{>footer}}

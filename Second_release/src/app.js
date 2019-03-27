@@ -35,8 +35,12 @@ app.post('/calculos', (req, res) =>{
     })
 });
 
-app.post('/crearcurso', (req, res) =>{
-    res.render('crearcurso', {
+app.get('/crearcurso', (req, res) =>{
+    res.render('crearcurso', {})
+});
+
+app.post('/crearcursox', (req, res) =>{
+    res.render('cursos', {
         id: parseInt(req.body.id), 
         nombre: req.body.nombre, 
         modalidad: req.body.modalidad, 
