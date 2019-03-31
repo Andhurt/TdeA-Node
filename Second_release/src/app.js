@@ -64,8 +64,7 @@ app.post('/registrarUsuario', (req, res) => {
         nombre: req.body.nombre, 
         correo: req.body.correo, 
         telefono: parseInt(req.body.telefono), 
-    })
-    
+    })    
 })
 
 app.get('/matricular', (req, res) => {
@@ -102,6 +101,12 @@ app.post('/matricularCurso', (req, res) => {
     res.render('matricularCurso', {
         id: parseInt(req.body.id), 
         nombre_curso: req.body.nombreCurso
+    })
+})
+
+app.post('/cerrarCurso', (req, res) => {
+    res.render('cursoCerrado', {
+        idCursoCerrado: parseInt(req.body.idCursoCerrado)
     })
 })
 

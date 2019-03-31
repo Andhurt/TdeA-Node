@@ -205,15 +205,14 @@ hbs.registerHelper('matricularCurso', (id_est, nombre_cur) => {
         id_estudiante: id_est,
         nombre_curso: nombre_cur
     }
-    let texto = matricularCurso(nMatricula);
-    console.log('el texto que llega es: ' + texto);
-    return texto
+    matricularCurso(nMatricula);
 });
 
 const listarCursosMatricula = () => {
     listarCursos();
     let texto;
-    listaCursos.forEach(cursoDet => {
+    const listaFiltrada = listaCursos.filter(d => d.estado === "Disponible");
+    listaFiltrada.forEach(cursoDet => {
         texto = texto +
             `<option>${cursoDet.nombre}</option>`
     })
@@ -245,17 +244,17 @@ const matricularCurso = (nMatricula) => {
                 ' ya se encuentra matriculado en el curso: ' + nMatricula.nombre_curso;
         }
     }
-    console.log(htmlResponse);
-}
+};
 
 const listarMatriculas = () => {
     try {
         listaMatriculas = require('./../listado_matriculas.json');  // Lista de forma sincrona
-    } catch (error) {
+    } catch (erro
+    ) {
         console.log('Por alguna razón no encuentro el listado de matriculas, pero debería. ');
         listaMatriculas = [];
     }
-}
+};
 
 const guardarMatricula = () => {
     let datos = JSON.stringify(listaMatriculas);
@@ -297,3 +296,94 @@ const eliminarMatricula = (id_est, nombre_cur) => {
     }
     console.log(htmlResponse);
 }
+
+/**ADMINISTRACION */
+hbs.registerHelper('listadoMatriculados', () => {
+    listarCursos();
+    const listaFiltrada = listaCursos.filter(d => d.estado === "Disponible");
+    let texto = '<div class="accordion" id="accordionAdminCurs">';
+    i = 1;
+
+    listaFiltrada.forEach(cursoDet => {
+        texto = texto +
+            `<div class="card">
+                <div class="card-header" id="heading${i}">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" 
+                            data-target="#collapse${i}" aria-expanded="true" 
+                            aria-controls="collapse${i}">
+                            ${cursoDet.nombre}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapse${i}" class="collapse" 
+                    aria-labelledby="heading${i}" data-parent="#accordionAdminCurs">
+                    <div class="card-body">
+                        <form class="form-inline" action="cerrarCurso" method="post">
+                            <div class="input-group">
+                                <button type="submit" name="button" class="btn btn-danger" 
+                                    id="bt">Cerrar Curso<i class="fa fa-angle-right"></i></button>
+                                <input class="form-control" name="idCursoCerrado" 
+                                    id="idCursoCerrado" value=${cursoDet.id} type="hidden">
+                            </div>
+                        </form>
+                        <table class='table table-striped'>
+                            <thead class='thead-dark'>
+                                <th>id</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Telefono</th>
+                            </thead>
+                            <tbody>`
+            + estudianteMatriculado(cursoDet.nombre) +
+            `</tbody> 
+                        </table>
+                    </div>
+                </div>
+            </div>`;
+        i = i + 1;
+    })
+
+    texto = texto + '</div>';
+    return texto;
+})
+
+let estudianteMatriculado = (cursoNombre) => {
+    let texto = '';
+    listarMatriculas();
+    listarUsuarios();
+    const listaFiltrada = listaMatriculas.filter(d => d.nombre_curso === cursoNombre);
+    listaFiltrada.forEach(ech_curso => {
+
+        let estudianteMatriculado = listaUsuarios.find(user => user.id == ech_curso.id_estudiante)
+        texto = texto +
+            '<tr>' +
+            '<td>' + estudianteMatriculado.id + '</td>' +
+            '<td>' + estudianteMatriculado.nombre + '</td>' +
+            '<td>' + estudianteMatriculado.correo + '</td>' +
+            '<td>' + estudianteMatriculado.telefono + '</td>' +
+            '<tr>';
+    })
+
+    return texto;
+}
+
+hbs.registerHelper('cerrarCurso', (idCursoCerrado) => {
+    cerrarCurso(idCursoCerrado);
+})
+
+let cerrarCurso = (idCursoCerrado) => {
+    listarCursos();
+    let existeCurso = listaCursos.find(cuers => cuers.id === idCursoCerrado)
+    if (!existeCurso) {
+        typeAlert = 'danger';
+        htmlResponse = 'No existe un curso para cerrar con ID ' + idCursoCerrado + '.';
+    } else {
+        existeCurso['estado'] = 'Cerrado';
+        guardarCurso();
+        typeAlert = 'success';
+        htmlResponse = 'El curso: ' + existeCurso.nombre +
+            ' se ha cerrado de manera exitosa.';
+
+    }
+};
