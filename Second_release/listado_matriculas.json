@@ -1,0 +1,26 @@
+[
+    {
+        "id_estudiante": 546412,
+        "nombre_curso": "'Diseño de Interfaces y UX"
+    },
+    {
+        "id_estudiante": 546412,
+        "nombre_curso": "Analítica de datos con TensorFlow"
+    },
+    {
+        "id_estudiante": 546412,
+        "nombre_curso": "Firebase para Web"
+    },
+    {
+        "id_estudiante": 546412,
+        "nombre_curso": "Angular 6"
+    },
+    {
+        "id_estudiante": 123789,
+        "nombre_curso": "Introducción a Node.js mediante el desarrollo de un proyecto ágil"
+    },
+    {
+        "id_estudiante": 123789,
+        "nombre_curso": "Programación Básica"
+    }
+]
