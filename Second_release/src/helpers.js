@@ -1,6 +1,7 @@
 const hbs = require('hbs');
 const fs = require('fs');
 listaCursos = [];
+listaUsuarios = [];
 
 // const {funcionCursos} = require('./funciones_cursos');
 
@@ -11,13 +12,13 @@ hbs.registerHelper('obtenerPromedio', (nota1, nota2, nota3) => {
 hbs.registerHelper('crearCurso',
     (id_p, nombre_p, modalidad_p, valor_p, descripcion_p, intensidad_p) => {
         let curso = {
-            id: id_p,
             nombre: nombre_p,
-            modalidad: modalidad_p,
-            valor: valor_p,
+            id: id_p,
             descripcion: descripcion_p,
-            intensidad: intensidad_p,
-            estado: 'Disponible'
+            valor: valor_p,
+            modalidad: modalidad_p,
+            intensidad: intensidad_p + " horas",
+            estado: "Disponible"
         }
 
         let texto = crearCurso(curso);
@@ -59,11 +60,11 @@ hbs.registerHelper('listarCursos', () => {
 const crearCurso = (curso) => {
     listarCursos();
     let cur = {
-        id: curso.id,
         nombre: curso.nombre,
-        modalidad: curso.modalidad,
-        valor: curso.valor,
+        id: curso.id,
         descripcion: curso.descripcion,
+        valor: curso.valor,
+        modalidad: curso.modalidad,
         intensidad: curso.intensidad,
         estado: curso.estado
     };
@@ -117,10 +118,10 @@ hbs.registerHelper('listarCursosDetalle', () => {
                     aria-labelledby="heading${i}" data-parent="#accordionexample">
                     <div class="card-body">
                      ID: ${cursoDet.id}<br>
-                     Modalidad: ${cursoDet.modalidad}<br>
                      Descripción: ${cursoDet.descripcion}<br>
-                     Intensidad: ${cursoDet.intensidad}<br>
                      Valor del curso: ${cursoDet.valor}<br>
+                     Modalidad: ${cursoDet.modalidad}<br>
+                     Intensidad: ${cursoDet.intensidad}<br>
                      Estado: ${cursoDet.estado}
                     </div>
                 </div>
@@ -131,3 +132,56 @@ hbs.registerHelper('listarCursosDetalle', () => {
     texto = texto + '</div>';
     return texto;
 })
+
+
+hbs.registerHelper('registrarUsuario', (id_u, nombre_u, correo_u, telefono_u) => {
+    let nUser = {
+        id: id_u,
+        nombre: nombre_u,
+        correo: correo_u,
+        telefono: telefono_u,
+        tipoUsuario: "Aspirante"
+    }
+
+    let texto = registrarUsuario(nUser);
+    return texto
+});
+
+const registrarUsuario = (nUser) => {
+    listarUsuarios();
+    let nuser = {
+        id: nUser.id,
+        nombre: nUser.nombre,
+        correo: nUser.correo,
+        telefono: nUser.telefono,
+        tipoUsuario: nUser.tipoUsuario
+    };
+    //control de usuarios duplicados
+    let existeUsuario = listaUsuarios.find(user => user.id == nuser.id)
+    let mensaje;
+    if (!existeUsuario) {
+        listaUsuarios.push(nuser);
+        guardarUsuario();
+        mensaje = 'Se ha registrado el usuario '+ nuser.nombre +' de manera exitosa.';
+    } else {
+        mensaje = 'Ya existe un usuario con el ID: ' + nuser.id;
+    }
+    return mensaje;
+}
+
+const listarUsuarios = () => {
+    try {
+        listaUsuarios = require('./../listado_usuarios.json');  // Lista de forma sincrona
+    } catch (error) {
+        console.log('Por alguna razón no encuentro el listado de usuarios, pero debería. ');
+        listaUsuarios = [];
+    }
+}
+
+const guardarUsuario = () => {
+    let datos = JSON.stringify(listaUsuarios);
+    fs.writeFile('listado_usuarios.json', datos, (err) => {
+        if (err) throw (err);
+        console.log('archivo creado con éxito');
+    })
+}

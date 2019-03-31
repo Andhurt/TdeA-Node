@@ -1,5 +1,7 @@
 const path = require('path');
 const express = require('express');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')
 const app = express();
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
@@ -9,6 +11,11 @@ app.use('/css', express.static(dirNode_modules + '/bootstrap/dist/css'));
 app.use('/js', express.static(dirNode_modules + '/jquery/dist'));
 app.use('/js', express.static(dirNode_modules + '/popper.js/dist'));
 app.use('/js', express.static(dirNode_modules + '/bootstrap/dist/js'));
+app.use(session({
+    secret: 'It´s a secret',
+    resave: true,
+    saveUninitialized: true
+}))
 
 require('./helpers');
 
@@ -35,7 +42,7 @@ app.post('/calculos', (req, res) =>{
     })
 });
 
-app.get('/crearcurso', (req, res) =>{
+app.post('/crearcurso', (req, res) =>{
     res.render('crearcurso', {})
 });
 
@@ -53,6 +60,20 @@ app.post('/crearcursox', (req, res) =>{
 app.get('/vercursos', (req, res) =>{
     res.render('cursos_est', {})
 });
+
+app.get('/registrar', (req, res) => {
+    res.render('registrar', {})
+})
+
+app.post('/registrarUsuario', (req, res) => {
+    res.render('registrarUsuario', {
+        id: parseInt(req.body.id), 
+        nombre: req.body.nombre, 
+        correo: req.body.correo, 
+        telefono: parseInt(req.body.telefono), 
+    })
+    
+})
 
 app.get('*', (req, res) => {
     res.render('error',  {

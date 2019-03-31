@@ -3,12 +3,12 @@ listaCursos= []
 
 const crearCurso = (curso) => {
     listarCurso();
-    let cur ={
-        id: curso.id, 
-        nombre: curso.nombre, 
+    let cur ={ 
+        nombre: curso.nombre,
+        id: curso.id,
+        descripcion: curso.descripcion,        
+        valor: curso.valor,  
         modalidad: curso.modalidad, 
-        valor: curso.valor, 
-        descripcion: curso.descripcion, 
         intensidad: curso.intensidad
     };
     //control de cursos duplicados
