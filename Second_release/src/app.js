@@ -101,6 +101,12 @@ app.post('/matricularCurso', (req, res) => {
     })
 })
 
+app.post('/cerrarCurso', (req, res) => {
+    res.render('cursoCerrado', {
+        idCursoCerrado: parseInt(req.body.idCursoCerrado)
+    })
+})
+
 
 app.get('*', (req, res) => {
     res.render('error',  {
