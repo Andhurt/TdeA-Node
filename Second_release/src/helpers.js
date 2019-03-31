@@ -2,13 +2,21 @@ const hbs = require('hbs');
 const fs = require('fs');
 listaCursos = [];
 listaUsuarios = [];
+listaMatriculas = [];
+typeAlert = "danger";
+htmlResponse = "";
 
 // const {funcionCursos} = require('./funciones_cursos');
 
-hbs.registerHelper('obtenerPromedio', (nota1, nota2, nota3) => {
-    return (nota1 + nota2 + nota3) / 3
-})
+hbs.registerHelper('getHtmlResponse', () => {
+    return htmlResponse
+});
 
+hbs.registerHelper('getAlert', () => {
+    return typeAlert
+});
+
+/*CURSOS*/
 hbs.registerHelper('crearCurso',
     (id_p, nombre_p, modalidad_p, valor_p, descripcion_p, intensidad_p) => {
         let curso = {
@@ -74,7 +82,7 @@ const crearCurso = (curso) => {
     if (!cursoDuplicado) {
         listaCursos.push(cur);
         guardarCurso();
-        mensaje = 'Se ha creado el curso '+ cur.nombre +' de manera exitosa.';
+        mensaje = 'Se ha creado el curso ' + cur.nombre + ' de manera exitosa.';
     } else {
         mensaje = 'Ya existe otro curso con ese ID: ' + cur.id;
     }
@@ -101,7 +109,7 @@ const guardarCurso = () => {
 hbs.registerHelper('listarCursosDetalle', () => {
     listarCursos();
     let texto = '<div class="accordion" id="accordionexample">';
-    i=1;
+    i = 1;
     listaCursos.forEach(cursoDet => {
         texto = texto +
             `<div class="card">
@@ -114,19 +122,19 @@ hbs.registerHelper('listarCursosDetalle', () => {
                         </button>
                     </h2>
                 </div>
-                <div id="collapse${i}" class="collapse show" 
+                <div id="collapse${i}" class="collapse" 
                     aria-labelledby="heading${i}" data-parent="#accordionexample">
                     <div class="card-body">
                      ID: ${cursoDet.id}<br>
                      Descripción: ${cursoDet.descripcion}<br>
-                     Valor del curso: ${cursoDet.valor}<br>
+                     Valor del curso: US ${cursoDet.valor}<br>
                      Modalidad: ${cursoDet.modalidad}<br>
                      Intensidad: ${cursoDet.intensidad}<br>
                      Estado: ${cursoDet.estado}
                     </div>
                 </div>
-            </div><br>`;
-        i=i+1;
+            </div>`;
+        i = i + 1;
     })
 
     texto = texto + '</div>';
@@ -134,6 +142,7 @@ hbs.registerHelper('listarCursosDetalle', () => {
 })
 
 
+/*ESTUDIANTES*/
 hbs.registerHelper('registrarUsuario', (id_u, nombre_u, correo_u, telefono_u) => {
     let nUser = {
         id: id_u,
@@ -162,7 +171,7 @@ const registrarUsuario = (nUser) => {
     if (!existeUsuario) {
         listaUsuarios.push(nuser);
         guardarUsuario();
-        mensaje = 'Se ha registrado el usuario '+ nuser.nombre +' de manera exitosa.';
+        mensaje = 'Se ha registrado el usuario ' + nuser.nombre + ' de manera exitosa.';
     } else {
         mensaje = 'Ya existe un usuario con el ID: ' + nuser.id;
     }
@@ -181,6 +190,76 @@ const listarUsuarios = () => {
 const guardarUsuario = () => {
     let datos = JSON.stringify(listaUsuarios);
     fs.writeFile('listado_usuarios.json', datos, (err) => {
+        if (err) throw (err);
+        console.log('archivo creado con éxito');
+    })
+}
+
+/*MATRICULAS*/
+hbs.registerHelper('listarCursosMatricula', () => {
+    return listarCursosMatricula();
+})
+
+hbs.registerHelper('matricularCurso', (id_est, nombre_cur) => {
+    let nMatricula = {
+        id_estudiante: id_est,
+        nombre_curso: nombre_cur
+    }
+    let texto = matricularCurso(nMatricula);
+    console.log('el texto que llega es: ' + texto);
+    return texto
+});
+
+const listarCursosMatricula = () => {
+    listarCursos();
+    let texto;
+    listaCursos.forEach(cursoDet => {
+        texto = texto +
+            `<option>${cursoDet.nombre}</option>`
+    })
+    return texto;
+}
+
+const matricularCurso = (nMatricula) => {
+    //Validación de existencia de estudiante
+    listarUsuarios();
+    let existeUsuario = listaUsuarios.find(user => user.id == nMatricula.id_estudiante)
+    if (!existeUsuario) {
+        typeAlert = 'danger';
+        htmlResponse = 'Aún no se ha registrado el estudiante con ID ' + nMatricula.id_estudiante + '.';
+    } else {
+        //control de matriculas duplicadas
+        listarMatriculas();
+        let existeMatricula = listaMatriculas.find(matri =>
+            (matri.id_estudiante == nMatricula.id_estudiante && matri.nombre_curso == nMatricula.nombre_curso));
+        if (!existeMatricula) {
+            listaMatriculas.push(nMatricula);
+            guardarMatricula();
+            typeAlert = 'success';
+            htmlResponse = 'El estudiante con ID: ' + nMatricula.id_estudiante +
+                ' se ha matriculado en el curso: ' + nMatricula.nombre_curso +
+                ' de manera exitosa.';
+        } else {
+            typeAlert = 'danger';
+            htmlResponse = 'El estudiante con ID: ' + nMatricula.id_estudiante +
+                ' ya se encuentra matriculado en el curso: ' + nMatricula.nombre_curso;
+        }
+    }
+    console.log(htmlResponse);
+}
+
+const listarMatriculas = () => {
+    try {
+        listaMatriculas = require('./../listado_matriculas.json');  // Lista de forma sincrona
+    } catch (error) {
+        console.log('Por alguna razón no encuentro el listado de matriculas, pero debería. ');
+        listaMatriculas = [];
+    }
+}
+
+const guardarMatricula = () => {
+    let datos = JSON.stringify(listaMatriculas);
+    fs.writeFile('listado_matriculas.json', datos, (err) => {
         if (err) throw (err);
         console.log('archivo creado con éxito');
     })

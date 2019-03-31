@@ -1,0 +1,26 @@
+{{>header}}
+<div class="container-fluid">
+    <div class="container-fluid" style=" border:1px solid green;">
+        <form action="/matricularCurso" method="post">
+                <div class="form-col mt-3">
+                    <div class="form-group col-md-6">
+                        <label for="inputId">Documento</label>
+                        <input type="number" class="form-control" name="id" id="inputId"
+                            placeholder="Ingrese su documento de identidad" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cursoMatricula">Seleccione el curso que quiere matricular</label>
+                        <select class="form-control" id="cursoMatricula" name="nombreCurso" required>
+                            {{{listarCursosMatricula}}}
+                        </select>
+                    </div>
+
+                </div>
+            <button type="submit" class="btn btn-success btn-block">Matricular Curso</button>
+        </form>
+        <br>
+    </div>
+</div>
+
+{{>footer}}

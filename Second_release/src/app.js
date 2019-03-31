@@ -42,7 +42,7 @@ app.post('/calculos', (req, res) =>{
     })
 });
 
-app.post('/crearcurso', (req, res) =>{
+app.get('/crearcurso', (req, res) =>{
     res.render('crearcurso', {})
 });
 
@@ -74,6 +74,33 @@ app.post('/registrarUsuario', (req, res) => {
     })
     
 })
+
+app.get('/matricular', (req, res) => {
+    res.render('matricular', {})
+})
+
+app.post('/matricularCurso', (req, res) => {
+    res.render('matricularCurso', {
+        id: parseInt(req.body.id), 
+        nombre_curso: req.body.nombreCurso
+    })
+})
+
+app.get('/admincursos', (req, res) => {
+    res.render('admincursos', {})
+})
+
+app.get('/adminmatriculas', (req, res) => {
+    res.render('adminmatriculas', {})
+})
+
+app.post('/matricularCurso', (req, res) => {
+    res.render('matricularCurso', {
+        id: parseInt(req.body.id), 
+        nombre_curso: req.body.nombreCurso
+    })
+})
+
 
 app.get('*', (req, res) => {
     res.render('error',  {
