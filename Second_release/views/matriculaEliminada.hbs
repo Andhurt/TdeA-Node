@@ -1,0 +1,17 @@
+{{>header}}
+<div class="container-fluid">
+    <h3>Administración de matrículas</h3>
+    {{eliminarMatricula id id_curso}}
+    <div class="alert alert-{{getAlert}}" role="alert">
+        {{getHtmlResponse}}
+    </div>
+    <br>
+    <div class="=aler alert-danger" role="alert">
+        Toca dejar la app arriba un rato para que funcione correcto.
+        Aún no entiendo porque no carga listado_matriculas.json de manera inmediata. 
+        listado_matriculas.json queda BIEN, eliminando el estudiante (revisarlo en el código)
+        pero no carga bien en la tabla. DEJAR LA APP un rato arriba. 
+    </div>
+    {{{listarMatriculadosEnCurso id_curso}}}
+</div>
+{{>footer}}

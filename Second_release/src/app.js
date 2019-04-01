@@ -94,19 +94,18 @@ app.get('/adminmatriculas', (req, res) => {
     res.render('adminmatriculas', {})
 })
 
-app.post('/matricularCurso', (req, res) => {
-    res.render('matricularCurso', {
-        id: parseInt(req.body.id), 
-        nombre_curso: req.body.nombreCurso
-    })
-})
-
 app.post('/cerrarCurso', (req, res) => {
     res.render('cursoCerrado', {
         idCursoCerrado: parseInt(req.body.idCursoCerrado)
     })
 })
 
+app.post('/eliminarMatricula', (req, res) => {
+    res.render('matriculaEliminada', {
+        id: parseInt(req.body.id), 
+        id_curso: parseInt(req.body.nombreCurso)
+    })
+})
 
 app.get('*', (req, res) => {
     res.render('error',  {
