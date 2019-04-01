@@ -1,0 +1,1 @@
+Este proyecto usa express, bootstrap, body-paser, hbs, popper.js y jquery por lo que es necesario la instalación de estos paquetes. Para eso se puede usar el comando npm i body-parser bootstrap express hbs jquery popper.js

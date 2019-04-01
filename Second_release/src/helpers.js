@@ -280,7 +280,40 @@ const guardarMatricula = () => {
         if (err) throw (err);
         console.log('archivo creado con éxito');
     })
-};
+}
+
+hbs.registerHelper('eliminarMatricula', (id_est, nombre_cur) => {
+    let texto = eliminarMatricula(id_est, nombre_cur);
+    console.log('el texto que llega es: ' + texto);
+    return texto
+});
+
+const eliminarMatricula = (id_est, nombre_cur) => {
+    //Validación de existencia de estudiante
+    listarUsuarios();
+    let existeUsuario = listaUsuarios.find(user => user.id == id_est)
+    if (!existeUsuario) {
+        typeAlert = 'danger';
+        htmlResponse = 'Aún no se ha registrado el estudiante con ID ' + id_est + '.';
+    } else {
+        //control de matriculas duplicadas
+        listarMatriculas();
+        let nuevoArchivo = listaMatriculas.filter(matri =>
+            (matri.id_estudiante != id_est || matri.nombre_curso != nombre_cur));
+        if (nuevoArchivo.length == listaMatriculas.length){
+            typeAlert = 'danger';
+            htmlResponse = 'El estudiante con ID ' + id_est + ' no se matriculó en el curso ' + nombre_cur + '.';
+        }
+        else{
+            listaMatriculas = nuevoArchivo;
+            guardarMatricula();
+            typeAlert = 'success';
+            htmlResponse = 'Se ha eliminado la matricula del estudiante con ID: ' + id_est +
+                ' en el curso: ' + nombre_cur;
+        }
+    }
+    console.log(htmlResponse);
+}
 
 /**ADMINISTRACION */
 hbs.registerHelper('listadoMatriculados', () => {

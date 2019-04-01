@@ -1,7 +1,5 @@
 const path = require('path');
 const express = require('express');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')
 const app = express();
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
@@ -11,11 +9,6 @@ app.use('/css', express.static(dirNode_modules + '/bootstrap/dist/css'));
 app.use('/js', express.static(dirNode_modules + '/jquery/dist'));
 app.use('/js', express.static(dirNode_modules + '/popper.js/dist'));
 app.use('/js', express.static(dirNode_modules + '/bootstrap/dist/js'));
-app.use(session({
-    secret: 'It´s a secret',
-    resave: true,
-    saveUninitialized: true
-}))
 
 require('./helpers');
 
@@ -71,8 +64,7 @@ app.post('/registrarUsuario', (req, res) => {
         nombre: req.body.nombre, 
         correo: req.body.correo, 
         telefono: parseInt(req.body.telefono), 
-    })
-    
+    })    
 })
 
 app.get('/matricular', (req, res) => {
@@ -81,6 +73,17 @@ app.get('/matricular', (req, res) => {
 
 app.post('/matricularCurso', (req, res) => {
     res.render('matricularCurso', {
+        id: parseInt(req.body.id), 
+        nombre_curso: req.body.nombreCurso
+    })
+})
+
+app.get('/eliminarMatricula', (req, res) => {
+    res.render('eliminarMatricula', {})
+})
+
+app.post('/matriculaEliminada', (req, res) => {
+    res.render('matriculaEliminada', {
         id: parseInt(req.body.id), 
         nombre_curso: req.body.nombreCurso
     })
