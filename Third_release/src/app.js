@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 
 const dirNode_modules = path.join(__dirname , '../node_modules')
 app.use('/css', express.static(dirNode_modules + '/bootstrap/dist/css'));
