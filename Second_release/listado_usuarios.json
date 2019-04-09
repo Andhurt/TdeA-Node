@@ -1,0 +1,44 @@
+[
+    {
+        "id": 123456,
+        "nombre": "Alberto Henao",
+        "correo": "ahenao@gmail.com",
+        "telefono": 3255,
+        "tipoUsuario": "Coordinador"
+    },
+    {
+        "id": 546412,
+        "nombre": "Andrés Ruiz",
+        "correo": "jijsd@ijfid",
+        "telefono": 6874852,
+        "tipoUsuario": "Aspirante"
+    },
+    {
+        "id": 1234,
+        "nombre": "jeremias",
+        "correo": "asdasdas@asda.com",
+        "telefono": 12345,
+        "tipoUsuario": "Aspirante"
+    },
+    {
+        "id": 1212,
+        "nombre": "zacarías",
+        "correo": "asdasdas@asda.com",
+        "telefono": 12345,
+        "tipoUsuario": "Aspirante"
+    },
+    {
+        "id": 1313,
+        "nombre": "elías",
+        "correo": "asdasdas@asda.com",
+        "telefono": 12345,
+        "tipoUsuario": "Aspirante"
+    },
+    {
+        "id": 5678,
+        "nombre": "hola mundo",
+        "correo": "werwerw@asdasd.com.co",
+        "telefono": 445,
+        "tipoUsuario": "Aspirante"
+    }
+]

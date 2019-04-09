@@ -1,0 +1,33 @@
+{{>header}}
+<div class="container-fluid">
+    <h3>Registro de estudiantes</h3>
+    <div class="container-fluid" style=" border:1px solid green;">
+        <form action="/registrarUsuario" method="post">
+            <div class="form-col mt-3">
+                <div class="form-group col-md-6">
+                    <label for="inputId">Documento</label>
+                    <input type="number" class="form-control" name="id" id="inputId" placeholder="Ingrese su documento de identidad"
+                        required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputName">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="inputName" placeholder="Ingrese su nombre completo"
+                        required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail">Correo</label>
+                    <input type="email" class="form-control" name="correo" id="inputEmail" placeholder="Ingrese su correo"
+                        required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPhone">Teléfono</label>
+                    <input type="number" class="form-control" name="telefono" id="inputPhone" placeholder="Ingrese su número telefónico"
+                        required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Registrar</button>
+        </form>
+        <br>
+    </div>
+</div>
+{{>footer}}
