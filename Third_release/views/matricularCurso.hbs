@@ -1,0 +1,11 @@
+{{>header}}
+
+{{matricularCurso id nombre_curso}}
+<div class="container-fluid">
+    <h3>Matrícula de cursos</h3>
+    <div class="alert alert-{{getAlert}}" role="alert">
+        {{getHtmlResponse}}
+    </div>
+    <br>
+</div>
+{{>footer}}

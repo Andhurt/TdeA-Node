@@ -1,0 +1,56 @@
+[
+    {
+        "nombre": "Introducción a Node.js mediante el desarrollo de un proyecto ágil",
+        "id": 1,
+        "descripcion": "Con el curso, los estudiantes tendrán un conocimiento del entorno de ejecución Node.JS a través del aprendizaje teórico de cada uno de los temas, pero especialmente mediante el aprender haciendo, debido a que cada semana tendrán que realizar el envío de una actividad practica basada en metodologías ágiles.",
+        "valor": 0,
+        "modalidad": "Virtual",
+        "intensidad": "32 horas",
+        "estado": "Cerrado"
+    },
+    {
+        "nombre": "Analítica de datos con TensorFlow",
+        "id": 2,
+        "descripcion": "Diploma analítica de datos con TensorFlow, aprendizaje automático para visión por computadora y tratamiento de señales.",
+        "valor": 4666550,
+        "modalidad": "Presencial",
+        "intensidad": "100 horas",
+        "estado": "Disponible"
+    },
+    {
+        "nombre": "'Diseño de Interfaces y UX",
+        "id": 3,
+        "descripcion": "Crea experiencias digitales que tus usuarios amen. Desde las etapas de investigación y el flujo de interacción, aprenderás con Sketch cómo diseñar una interfaz atractiva y funcional.",
+        "valor": 142900,
+        "modalidad": "Virtual",
+        "intensidad": "48 horas",
+        "estado": "Disponible"
+    },
+    {
+        "nombre": "Firebase para Web",
+        "id": 4,
+        "descripcion": "Crea experiencias digitales que tus usuarios amen. Desde las etapas de investigación y el flujo de interacción, aprenderás con Sketch cómo diseñar una interfaz atractiva y funcional.",
+        "valor": 142900,
+        "modalidad": "Virtual",
+        "intensidad": "48 horas",
+        "estado": "Disponible"
+    },
+    {
+        "nombre": "Programación Básica",
+        "id": 5,
+        "descripcion": "Programa desde cero, domina Javascript, entiende HTML y aprende de algoritmos. Sí, desde cero. Entenderás la lógica del código, cómo piensan los programadores y cómo programar juegos, proyectos y hasta robots y electrónica. Aprender a programar no es fácil, pero Platzi lo hace efectivo.",
+        "valor": 0,
+        "modalidad": "Virtual",
+        "intensidad": "45 horas",
+        "estado": "Disponible"
+    },
+    {
+        "nombre": "Angular 6",
+        "id": 6,
+        "descripcion": "Desarrolla aplicaciones Web modulares e interactivas con Angular 6, el framework de Javascript, desarrollado y soportado por Google, que te permite crear aplicaciones SPA. Aprende a crear apps y mejora tus habilidades con Angular 6.",
+        "valor": 142900,
+        "modalidad": "Virtual",
+        "intensidad": "40 horas",
+        "estado": "Disponible"
+    }
+]
