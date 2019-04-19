@@ -13,3 +13,5 @@ Second_release/package-lock.json
 Second_release/node_modules/
 Third_release/package-lock.json
 Third_release/node_modules/
+mongoNativo/package-lock.json
+mongoNativo/node_modules/
