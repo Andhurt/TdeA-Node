@@ -1,0 +1,21 @@
+{
+  "name": "unidad_tres",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ahuertas",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
+    "express": "^4.16.4",
+    "hbs": "^4.0.4",
+    "jquery": "^3.4.0",
+    "mongoose": "^5.5.2",
+    "mongoose-unique-validator": "^2.0.3",
+    "popper.js": "^1.15.0"
+  }
+}
